@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Libros</title>
+</head>
+<body>
+    <h1>Registrar un nuevo libro</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+
+    <h2>Listado de libros</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Autor</th>
+                <th>Título</th>
+                <th>Año</th>
+                <th>ISBN</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+                <tr>
+                    <td>{{ libro.id }}</td>
+                    <td>{{ libro.autor }}</td>
+                    <td>{{ libro.titulo }}</td>
+                    <td>{{ libro.anio_publicacion }}</td>
+                    <td>{{ libro.isbn }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5">No hay libros cargados.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
